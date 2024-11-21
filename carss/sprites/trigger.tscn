@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://2ul61ss1wiae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vovx"]
+
+[node name="Trigger" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(25, 25)
+shape = SubResource("RectangleShape2D_0vovx")
+debug_color = Color(0.0442283, 0.645107, 0.243128, 0.42)

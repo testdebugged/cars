@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyiljs3ldx30g"]
+
+[ext_resource type="Script" path="res://scripts/CameraController.gd" id="1_l8kgv"]
+[ext_resource type="Script" path="res://scripts/ExplodeScript.gd" id="2_gxjrw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sw66n"]
+radius = 121.202
+
+[node name="CameraController" type="Node2D"]
+script = ExtResource("1_l8kgv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="p" type="CPUParticles2D" parent="Camera2D"]
+emitting = false
+amount = 25
+lifetime = 0.5
+speed_scale = 3.0
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 250.0
+initial_velocity_max = 500.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = -0.1
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(1, 1, 0.823529, 1)
+
+[node name="o" type="CPUParticles2D" parent="Camera2D"]
+emitting = false
+amount = 35
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 250.0
+orbit_velocity_min = -0.3
+orbit_velocity_max = 0.3
+linear_accel_max = 20.0
+damping_min = 70.0
+damping_max = 70.0
+angle_max = 720.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+
+[node name="Explode" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("2_gxjrw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explode"]
+shape = SubResource("CircleShape2D_sw66n")
+debug_color = Color(1, 0.6, 0.701961, 0.419608)
+
+[connection signal="body_entered" from="Explode" to="Explode" method="_on_body_entered"]
+[connection signal="body_exited" from="Explode" to="Explode" method="_on_body_exited"]

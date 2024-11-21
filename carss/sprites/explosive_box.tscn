@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn13n768y6c2r"]
+
+[ext_resource type="Script" path="res://scripts/ExplosiveBox.gd" id="1_m3kfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_er8xc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q1w5e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_attug"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_734og"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3rl5m"]
+
+[node name="Box" type="RigidBody2D"]
+continuous_cd = 1
+max_contacts_reported = 2
+contact_monitor = true
+script = ExtResource("1_m3kfy")
+particles_emitted = [NodePath("1"), NodePath("2"), NodePath("3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_er8xc")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D"]
+self_modulate = Color(0.46906, 0.0872528, 4.81308e-08, 1)
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_q1w5e")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D/MeshInstance2D"]
+scale = Vector2(1, 0.3)
+mesh = SubResource("BoxMesh_attug")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D/MeshInstance2D/MeshInstance2D"]
+self_modulate = Color(0.718028, 0.718028, 0, 1)
+position = Vector2(8.88178e-16, 0)
+rotation = 3.14159
+scale = Vector2(0.234, 0.7)
+mesh = SubResource("PrismMesh_734og")
+
+[node name="radius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="radius"]
+scale = Vector2(15, 15)
+shape = SubResource("CircleShape2D_3rl5m")
+debug_color = Color(0.853992, 0.350675, 0.310008, 0.42)
+
+[node name="1" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 9
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 250.0
+linear_accel_min = -75.0
+linear_accel_max = -75.0
+scale_amount_min = 15.0
+scale_amount_max = 55.0
+color = Color(0.835149, 0.497652, 0, 1)
+
+[node name="2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 9
+speed_scale = 2.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 250.0
+linear_accel_min = -25.0
+linear_accel_max = -25.0
+scale_amount_min = 15.0
+scale_amount_max = 40.0
+color = Color(0.835294, 0.2, 0, 1)
+
+[node name="3" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 9
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 250.0
+scale_amount_min = 10.0
+scale_amount_max = 25.0
+color = Color(0.835294, 1, 0, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="radius" to="." method="_on_radius_body_entered"]
+[connection signal="body_exited" from="radius" to="." method="_on_radius_body_exited"]
+[connection signal="finished" from="3" to="." method="_on__finished"]

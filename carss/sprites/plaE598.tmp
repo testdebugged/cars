@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://wh2tna4ff0k6"]
+
+[ext_resource type="Script" path="res://scripts/CarPlayerMovementBase.gd" id="1_gv57t"]
+[ext_resource type="PhysicsMaterial" uid="uid://diliqw0gfjyyu" path="res://mat/car_material.tres" id="2_mb74t"]
+[ext_resource type="PackedScene" uid="uid://dyiljs3ldx30g" path="res://sprites/camera_controller.tscn" id="2_nhunf"]
+[ext_resource type="PhysicsMaterial" uid="uid://vmnnk1f64j7i" path="res://mat/wheel_material.tres" id="3_rrrr7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i1h7k"]
+radius = 8.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0og35"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tsghq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_tbyjs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_t1qu3"]
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("wheel_left", "wheel_right", "car_base")]
+script = ExtResource("1_gv57t")
+wheel_left = NodePath("LW")
+wheel_right = NodePath("RW")
+car_base = NodePath("CarBase")
+
+[node name="CarBase" type="RigidBody2D" parent="."]
+collision_layer = 3
+mass = 2.0
+physics_material_override = ExtResource("2_mb74t")
+
+[node name="Base" type="CollisionShape2D" parent="CarBase"]
+rotation = 1.5708
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CapsuleShape2D_i1h7k")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CarBase/Base"]
+scale = Vector2(15, 15)
+mesh = SubResource("CapsuleMesh_0og35")
+
+[node name="LW" type="RigidBody2D" parent="."]
+position = Vector2(-14, 10)
+physics_material_override = ExtResource("3_rrrr7")
+angular_damp = 1.0
+
+[node name="Circle" type="CollisionShape2D" parent="LW"]
+shape = SubResource("CircleShape2D_tsghq")
+
+[node name="Mesh" type="MeshInstance2D" parent="LW/Circle"]
+self_modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_tbyjs")
+
+[node name="Inner" type="MeshInstance2D" parent="LW"]
+self_modulate = Color(0.29219, 0.29219, 0.29219, 1)
+scale = Vector2(9.41166, 9.41166)
+mesh = SubResource("BoxMesh_t1qu3")
+
+[node name="RW" type="RigidBody2D" parent="."]
+position = Vector2(14, 10)
+physics_material_override = ExtResource("3_rrrr7")
+angular_damp = 1.0
+
+[node name="Circle" type="CollisionShape2D" parent="RW"]
+shape = SubResource("CircleShape2D_tsghq")
+
+[node name="Mesh" type="MeshInstance2D" parent="RW/Circle"]
+self_modulate = Color(0.0885599, 0.0885599, 0.0885599, 1)
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_tbyjs")
+
+[node name="Inner" type="MeshInstance2D" parent="RW"]
+self_modulate = Color(0.29219, 0.29219, 0.29219, 1)
+scale = Vector2(9.41166, 9.41166)
+mesh = SubResource("BoxMesh_t1qu3")
+
+[node name="lj" type="PinJoint2D" parent="."]
+position = Vector2(-14, 10)
+node_a = NodePath("../CarBase")
+node_b = NodePath("../LW")
+bias = 0.1
+
+[node name="rj" type="PinJoint2D" parent="."]
+position = Vector2(14, 10)
+node_a = NodePath("../CarBase")
+node_b = NodePath("../RW")
+bias = 0.1
+
+[node name="CameraController" parent="." node_paths=PackedStringArray("PlayerCarBase") instance=ExtResource("2_nhunf")]
+PlayerCarBase = NodePath("../CarBase")

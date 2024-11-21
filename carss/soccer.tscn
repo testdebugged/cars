@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://w7lcehht7lu5"]
+
+[ext_resource type="PackedScene" uid="uid://wh2tna4ff0k6" path="res://sprites/playercar.tscn" id="1_x8mw8"]
+[ext_resource type="PackedScene" uid="uid://cypdvnm6guct" path="res://sprites/aicar.tscn" id="2_6n6ke"]
+[ext_resource type="PackedScene" uid="uid://i613wcbiu8dt" path="res://sprites/box.tscn" id="3_s7282"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8ldn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ilxs5"]
+
+[node name="Soccer" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 636)
+scale = Vector2(150, 5)
+shape = SubResource("RectangleShape2D_e8ldn")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D"]
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_ilxs5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1500, 636)
+rotation = 0.0872665
+scale = Vector2(150, 5)
+shape = SubResource("RectangleShape2D_e8ldn")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D2"]
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_ilxs5")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1500, 636)
+rotation = -0.0872665
+scale = Vector2(150, 5)
+shape = SubResource("RectangleShape2D_e8ldn")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D3"]
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_ilxs5")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1445, -181)
+rotation = -0.0872665
+scale = Vector2(150, 5)
+shape = SubResource("RectangleShape2D_e8ldn")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D4"]
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_ilxs5")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1462, -181)
+rotation = 0.0872665
+scale = Vector2(150, 5)
+shape = SubResource("RectangleShape2D_e8ldn")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D5"]
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_ilxs5")
+
+[node name="Player" parent="." instance=ExtResource("1_x8mw8")]
+position = Vector2(-447, 352)
+speed = 10
+
+[node name="AICar" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_6n6ke")]
+position = Vector2(493, 339)
+speed = 10
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_6n6ke")]
+position = Vector2(2160, 403)
+speed = 25
+mode = 2
+target = NodePath("../Player")
+
+[node name="Box" parent="." instance=ExtResource("3_s7282")]
+position = Vector2(62, 366)

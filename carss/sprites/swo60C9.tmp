@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://kau8j6fqckqf"]
+
+[ext_resource type="Script" path="res://scripts/SwordScript.gd" id="1_xrp6u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsi0i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_avgr4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmx0s"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_gy26f"]
+
+[node name="Sword" type="Node2D"]
+script = ExtResource("1_xrp6u")
+
+[node name="Handle" type="CharacterBody2D" parent="."]
+modulate = Color(0.646029, 0.646029, 0.646029, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Handle"]
+position = Vector2(0, -100)
+scale = Vector2(1, 10)
+shape = SubResource("RectangleShape2D_qsi0i")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Handle/CollisionShape2D"]
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_avgr4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Handle"]
+modulate = Color(0.996769, 0.671418, 1, 1)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_hmx0s")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Handle/CollisionShape2D2"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_gy26f")

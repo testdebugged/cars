@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckp8os7dqsfhs"]
+
+[ext_resource type="Script" path="res://scripts/Shoot.gd" id="1_v00c8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvmqg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h20e5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7w10r"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4qvcc"]
+
+[node name="ProjectileSpew" type="Node2D"]
+script = ExtResource("1_v00c8")
+
+[node name="pivot" type="CharacterBody2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="b" type="CollisionShape2D" parent="pivot"]
+position = Vector2(20, 0)
+scale = Vector2(2, 0.3)
+shape = SubResource("RectangleShape2D_mvmqg")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="pivot/b"]
+self_modulate = Color(0.617455, 0.617455, 0.617455, 1)
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_h20e5")
+
+[node name="emit" type="Node2D" parent="pivot/b"]
+position = Vector2(10, 0)
+
+[node name="p" type="CollisionShape2D" parent="pivot"]
+shape = SubResource("CircleShape2D_7w10r")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="pivot/p"]
+self_modulate = Color(8.66354e-07, 0.592432, 0.595922, 1)
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_4qvcc")
+
+[node name="CD" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+one_shot = true

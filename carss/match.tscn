@@ -1,0 +1,319 @@
+[gd_scene load_steps=8 format=3 uid="uid://ty24rro1xvms"]
+
+[ext_resource type="PackedScene" uid="uid://wh2tna4ff0k6" path="res://sprites/playercar.tscn" id="1_5u0eb"]
+[ext_resource type="PackedScene" uid="uid://s0i8ghpf5mu" path="res://sprites/car.tscn" id="2_cn3cf"]
+[ext_resource type="PackedScene" uid="uid://cypdvnm6guct" path="res://sprites/aicar.tscn" id="3_kb8bb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq67i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lry4v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpdxv"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_f4cwt"]
+
+[node name="Match" type="Node2D"]
+
+[node name="MAP" type="StaticBody2D" parent="."]
+position = Vector2(-239, 176)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MAP"]
+scale = Vector2(1000, 25)
+shape = SubResource("RectangleShape2D_xq67i")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="MAP/CollisionShape2D"]
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_lry4v")
+
+[node name="MAP2" type="StaticBody2D" parent="."]
+position = Vector2(9639, 176)
+rotation = 2.87979
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MAP2"]
+scale = Vector2(1000, 25)
+shape = SubResource("RectangleShape2D_xq67i")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="MAP2/CollisionShape2D"]
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_lry4v")
+
+[node name="MAP3" type="StaticBody2D" parent="."]
+position = Vector2(-9974, 176)
+rotation = 3.40339
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MAP3"]
+scale = Vector2(1000, 25)
+shape = SubResource("RectangleShape2D_xq67i")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="MAP3/CollisionShape2D"]
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_lry4v")
+
+[node name="circle2" type="StaticBody2D" parent="."]
+position = Vector2(-3269, 32)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="circle2"]
+scale = Vector2(25, 25)
+shape = SubResource("CircleShape2D_cpdxv")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="circle2/CollisionShape2D"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_f4cwt")
+
+[node name="circle3" type="StaticBody2D" parent="."]
+position = Vector2(2971, 32)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="circle3"]
+scale = Vector2(25, 25)
+shape = SubResource("CircleShape2D_cpdxv")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="circle3/CollisionShape2D"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_f4cwt")
+
+[node name="Player" parent="." instance=ExtResource("1_5u0eb")]
+position = Vector2(-232, -112)
+speed = 4
+
+[node name="Car" parent="." instance=ExtResource("2_cn3cf")]
+position = Vector2(-2504, -358)
+
+[node name="Car2" parent="." instance=ExtResource("2_cn3cf")]
+position = Vector2(5446, -629)
+
+[node name="Car3" parent="." instance=ExtResource("2_cn3cf")]
+position = Vector2(1208, -561)
+
+[node name="Car4" parent="." instance=ExtResource("2_cn3cf")]
+position = Vector2(-5216, -1019)
+
+[node name="AICar" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(7, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(119, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(229, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar5" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(341, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar6" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(453, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar7" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(565, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar8" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(686, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar9" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(798, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar10" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(924, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar11" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1036, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar12" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1167, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar13" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1279, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar14" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1386, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar15" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1498, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar16" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1610, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar17" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1722, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar18" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1819, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar19" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1931, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar20" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(2038, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar21" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(2150, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar22" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(2238, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar23" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(2350, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar24" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(68, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar25" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(180, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar26" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(290, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar27" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(402, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar28" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(514, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar29" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(626, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar30" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(747, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar31" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(859, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar32" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(985, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar33" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1097, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar34" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1228, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar35" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1340, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar36" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1447, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar37" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1559, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar38" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1671, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar39" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1783, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar40" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1880, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar41" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(1992, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar42" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(2099, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar43" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(2211, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar44" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(2299, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar45" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(2411, -158)
+mode = 2
+target = NodePath("../Player")
+
+[node name="AICar2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_kb8bb")]
+position = Vector2(-3820, -312)
+scale = Vector2(10, 10)
+mode = 2
+target = NodePath("../Player")
